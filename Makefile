@@ -1,6 +1,7 @@
 all:
 	bundle exec pdqtest all
-	bundle exec puppet strings
+	bundle exec puppet strings generate --format=markdown
+
 
 shell:
 	bundle exec pdqtest --keep-container acceptance

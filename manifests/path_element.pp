@@ -11,16 +11,12 @@ define environment_variable::path_element(
 ) {
   case $facts['kernel'] {
     "windows": {
-      # progressively build up the path with seperate resources.  if the provider
-      # doesn't allow this will have to rewrite to be a concat
-
-
-      #can only be done once presumably? - test this out...
+      # progressively build up the path with seperate resources.
+      # insert path element on windows without any ordering (to allow multiple inserts)
       windows_env { "path_element_${path}":
-        ensure    => $ensure,
-        variable  => 'PATH',
-        value     => $path,
-        mergemode => insert,
+        ensure   => $ensure,
+        variable => 'PATH',
+        value    => $path,
       }
     }
 
